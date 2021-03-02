@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
-use App\Http\Requests\PetRequest;
 use App\Models\Care;
+use App\Http\Requests\PetRequest;
 use App\Http\Requests\CareRequest;
 
 class ApiController extends Controller
@@ -21,7 +21,7 @@ class ApiController extends Controller
         }
 
 		return response()->json(
-            $pet, 201, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            $pet, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE
         );
     }
@@ -37,7 +37,7 @@ class ApiController extends Controller
         }
 
 		return response()->json(
-            $pets, 201, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            $pets, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE
         );
     }
@@ -102,7 +102,7 @@ class ApiController extends Controller
         $return = 'Em ' . $date_formated . ' o pet ' . $care->pet->name . ' (' . $care->pet->specie->name . ') ' . $care->description;
 
 		return response()->json(
-            $return, 201, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            $return, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE
         );
     }
@@ -118,18 +118,14 @@ class ApiController extends Controller
         }
 
 		return response()->json(
-            $cares, 201, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            $cares, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE
         );
     }
 
     public function createCare(CareRequest $request)
     {
-		$care = Care::create([
-            'pet_id' => $request['pet_id'],
-            'description' => $request['description'],
-            'cared_at' => $request['cared_at']
-        ]);
+		$care = Care::create($request->all());
 
         if (!$care) {
             return response()->json([
