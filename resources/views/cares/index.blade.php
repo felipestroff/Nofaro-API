@@ -64,7 +64,7 @@
                     row.appendChild(description);
 
                     let cared_at = document.createElement('td');
-                    cared_at.innerText = care.cared_at;
+                    cared_at.innerText = formatDate(care.cared_at);
                     row.appendChild(cared_at);
 
                     // Actions

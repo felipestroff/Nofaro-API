@@ -18,6 +18,15 @@
                 text-align: center;
             }
         </style>
+
+        <!-- Scripts -->
+        <script>
+            function formatDate(date) {
+                let new_date = new Date(date);
+                let date_formated = ((new_date.getDate() )) + '/' + ((new_date.getMonth() + 1)) + '/' + new_date.getFullYear();
+                return date_formated;
+            }
+        </script>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">

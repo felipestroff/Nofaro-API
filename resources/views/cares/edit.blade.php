@@ -5,23 +5,29 @@
 <form id="form">
     @csrf
 
-    <!-- Name -->
+    <!-- Pets -->
     <div class="mb-3">
-        <label for="name" class="form-label">name</label>
-        <input type="text" class="form-control" name="name" id="name" value="{{ $pet->name }}" required>
-    </div>
-
-    <!-- Specie -->
-    <div class="mb-3">
-        <label for="specie_id" class="form-label">specie</label>
-        <select class="form-control" name="specie_id" id="specie_id" value="${{ $pet->specie->id }}" required>
-            @foreach ($species as $specie)
-                <option value="{{ $specie->id }}"
-                    {{ $pet->specie->id == $specie->id ? 'selected' : '' }}>
-                    {{ $specie->name }}
+        <label for="pet_id" class="form-label">pet</label>
+        <select class="form-control" name="pet_id" id="pet_id" value="{{ $care->pet_id }}" required>
+            @foreach ($pets as $pet)
+                <option value="{{ $pet->id }}"
+                    {{ $pet->id == $care->pet_id ? 'selected' : '' }}>
+                    {{ $pet->name }}
                 </option>
             @endforeach
         </select>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+        <label for="description" class="form-label">description</label>
+        <textarea class="form-control" name="description" id="description">{{ $care->description }}</textarea>
+    </div>
+
+    <!-- Cared at -->
+    <div class="mb-3">
+        <label for="cared_at" class="form-label">cared at</label>
+        <input type="date" class="form-control" name="cared_at" id="cared_at" value="{{ $care->cared_at }}" required>
     </div>
 
     <!-- Submit -->
@@ -42,11 +48,12 @@
 
         const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        fetch(`/api/pets/{{ $pet->id }}`, {
+        fetch(`/api/cares/{{ $care->id }}`, {
             method: 'PUT',
             body: JSON.stringify({
-                'name': document.getElementById('name').value,
-                'specie_id': document.getElementById('specie_id').value
+                'pet_id': document.getElementById('pet_id').value,
+                'description': document.getElementById('description').value,
+                'cared_at': document.getElementById('cared_at').value
             }),
             headers: {
                 'Content-Type':'application/json'
