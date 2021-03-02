@@ -1,7 +1,5 @@
 ## Nofaro - API
 
-- - - - -
-
 ## Requeriments
 
 - Local web server (xampp, wamp, etc)
@@ -35,9 +33,6 @@ To create or edit current data (seeds), enter on: `./database/migrations` app di
 - - - - -
 
 ## API
-
-Available routes
-----
 
 Pets:
 1. GET: `api/pets/{id}` - show pet by provided id with related `specie` and `cares`
