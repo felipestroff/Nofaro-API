@@ -35,15 +35,15 @@ To create or edit current data (seeds), enter on: `./database/migrations` app di
 ## API
 
 Pets:
-1. GET: `api/pets/{id}` - show pet by provided id with related `specie` and `cares`
+1. GET: `api/pets/{id}` - show pet by provided `id` with related `specie` and `cares`
 2. GET: `api/pets` - show all pets with related `specie` and `cares`
 3. POST: `api/pets` - create new pet
-4. DELETE: `api/pets/{id}` - delete pet by provided id deleting related `cares`
-5. PUT: `api/pets/{id}` - update pet by provided id
+4. DELETE: `api/pets/{id}` - delete pet by provided `id` deleting related `cares`
+5. PUT: `api/pets/{id}` - update pet by provided `id`
 
 Cares:
-1. GET: `api/cares/{id}` - show care by provided id with related `pet`
+1. GET: `api/cares/{id}` - show care by provided `id` with related `pet`
 2. GET: `api/cares` - show all cares with related `pet`
 3. POST: `api/cares` - create new care
-4. DELETE: `api/cares/{id}` - delete care by provided id
-5. PUT: `api/cares/{id}` - update care by provided id
+4. DELETE: `api/cares/{id}` - delete care by provided `id`
+5. PUT: `api/cares/{id}` - update care by provided `id`
