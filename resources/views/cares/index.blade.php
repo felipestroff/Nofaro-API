@@ -53,7 +53,10 @@
                     row.appendChild(id);
 
                     let pet = document.createElement('td');
-                    pet.innerText = `${care.pet.name} (${care.pet.id})`;
+                    let petLink = document.createElement('a');
+                    petLink.innerText = `${care.pet.name} (${care.pet.id})`;
+                    petLink.href = `/pets/${care.pet.id}`;
+                    pet.appendChild(petLink);
                     row.appendChild(pet);
 
                     let description = document.createElement('td');

@@ -97,8 +97,12 @@ class ApiController extends Controller
             ], 404);
         }
 
+        $date_formated = date('d/m/Y', strtotime($care->cared_at));
+
+        $return = 'Em ' . $date_formated . ' o pet ' . $care->pet->name . ' (' . $care->pet->specie->name . ') ' . $care->description;
+
 		return response()->json(
-            $care, 201, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            $return, 201, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE
         );
     }
