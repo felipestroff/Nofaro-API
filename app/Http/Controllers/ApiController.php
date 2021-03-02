@@ -28,7 +28,7 @@ class ApiController extends Controller
 
     public function showAllPets()
     {
-		$pets = Pet::with('specie', 'cares')->get();
+		$pets = Pet::with('specie', 'cares')->paginate(10);
 
         if (!count($pets)) {
             return response()->json([
@@ -109,7 +109,7 @@ class ApiController extends Controller
 
     public function showAllCares()
     {
-		$cares = Care::with('pet')->get();
+		$cares = Care::with('pet')->paginate(10);
 
         if (!count($cares)) {
             return response()->json([
