@@ -29,7 +29,6 @@
 
 <script>
     loadPets();
-
     function loadPets() {
         fetch('/api/pets')
         .then(function(response) {

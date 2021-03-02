@@ -29,7 +29,6 @@
 
 <script>
     loadCares();
-
     function loadCares() {
         fetch('/api/cares')
         .then(function(response) {

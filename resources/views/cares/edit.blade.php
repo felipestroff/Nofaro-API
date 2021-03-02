@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form id="form">
+<form id="form" onsubmit="update(event)">
     @csrf
 
     <!-- Pets -->
@@ -43,7 +43,7 @@
 </div>
 
 <script>
-    form.addEventListener('submit', function (e) {
+    function update(e) {
         e.preventDefault();
 
         const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -71,7 +71,7 @@
             console.error(error);
             json.innerText = error;
         });
-    });
+    }
 </script>
 
 @endsection

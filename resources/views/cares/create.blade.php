@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form id="form">
+<form id="form" onsubmit="create(event)">
     @csrf
 
     <!-- Pets -->
@@ -42,10 +42,8 @@
 </div>
 
 <script>
-    form.addEventListener('submit', function (e) {
+    function create(e) {
         e.preventDefault();
-
-        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         fetch('/api/cares', {
             method: 'POST',
@@ -70,7 +68,7 @@
             console.error(error);
             json.innerText = error;
         });
-    });
+    }
 </script>
 
 @endsection
