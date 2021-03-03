@@ -23,13 +23,15 @@ Route::get('/', function () {
 // Pets
 Route::get('pets/{id}', [ApiController::class, 'showPet']);
 Route::get('pets',  [ApiController::class, 'showAllPets']);
+Route::get('query/pets', [ApiController::class, 'QueryPets']);
 Route::post('pets', [ApiController::class, 'createPet']);
-Route::delete('pets/{id}', [ApiController::class, 'deletePet']);
 Route::put('pets/{id}', [ApiController::class, 'updatePet']);
+Route::delete('pets/{id}', [ApiController::class, 'deletePet']);
 
 // Cares
-Route::get('cares',  [ApiController::class, 'showAllCares']);
 Route::get('cares/{id}', [ApiController::class, 'showCare']);
+Route::get('cares',  [ApiController::class, 'showAllCares']);
+Route::get('query/cares', [ApiController::class, 'QueryCares']);
 Route::post('cares', [ApiController::class, 'createCare']);
-Route::delete('cares/{id}', [ApiController::class, 'deleteCare']);
 Route::put('cares/{id}', [ApiController::class, 'updateCare']);
+Route::delete('cares/{id}', [ApiController::class, 'deleteCare']);

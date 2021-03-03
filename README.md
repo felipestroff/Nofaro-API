@@ -47,3 +47,28 @@ Cares:
 3. POST: `api/cares` - create new care
 4. DELETE: `api/cares/{id}` - delete care by provided `id`
 5. PUT: `api/cares/{id}` - update care by provided `id`
+
+GET Filters (https://github.com/spatie/laravel-query-builder):
+- `api/query/pets?filter[attribute]=your_filter` (each filter separed by `&`)
+- `api/query/cares?filter[attribute]=your_filter`
+
+Include relationships:
+- `api/query/pets?includes=specie`
+- `api/query/cares?includes=pet`
+
+Many relationships:
+- `api/query/pets?includes=specie,cares` (each separed by comma `,`)
+
+Filters with relationships:
+- `api/query/pets?filter[relationship.attribute]=your_filter`
+- `api/query/cares?filter[relationship.attribute]=your_filter`
+
+Sorting:
+- `api/query/pets?sort=attribute`
+- `api/query/cares?sort=attribute`
+
+Sample filters:
+- `api/query/pets?includes=specie,cares&filter[name]=bolinha&filter[specie.name]=cao`
+- `api/query/cares?includes=pet&filter[description]=vacina&filter[pet.name]=bolinha&sort=cared_at`
+
+<b>note:<b> all filters paginated by 10 items

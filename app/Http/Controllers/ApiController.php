@@ -6,6 +6,7 @@ use App\Models\Pet;
 use App\Models\Care;
 use App\Http\Requests\PetRequest;
 use App\Http\Requests\CareRequest;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ApiController extends Controller
 {
@@ -37,6 +38,25 @@ class ApiController extends Controller
         }
 
 		return response()->json(
+            $pets, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            JSON_UNESCAPED_UNICODE
+        );
+    }
+
+    public function QueryPets()
+    {
+        $pets = QueryBuilder::for(Pet::class)
+            ->allowedIncludes('specie', 'cares')
+            ->allowedFilters('name', 'specie.name')
+            ->paginate(10);
+
+        if (!count($pets)) {
+            return response()->json([
+                'message' => 'Pets not found',
+            ], 404);
+        }
+
+        return response()->json(
             $pets, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE
         );
@@ -118,6 +138,25 @@ class ApiController extends Controller
         }
 
 		return response()->json(
+            $cares, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            JSON_UNESCAPED_UNICODE
+        );
+    }
+
+    public function QueryCares()
+    {
+        $cares = QueryBuilder::for(Care::class)
+            ->allowedIncludes('pet')
+            ->allowedFilters('description', 'cared_at', 'pet.name')
+            ->paginate(10);
+
+        if (!count($cares)) {
+            return response()->json([
+                'message' => 'Cares not found',
+            ], 404);
+        }
+
+        return response()->json(
             $cares, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
             JSON_UNESCAPED_UNICODE
         );

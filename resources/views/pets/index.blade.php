@@ -35,13 +35,13 @@
             console.log(response);
             return response.json();
         })
-        .then(function(data) {
-            console.log(data);
+        .then(function(dataset) {
+            console.log(dataset);
 
-            json.innerText = JSON.stringify(data, null, '\t');
+            json.innerText = JSON.stringify(dataset, null, '\t');
 
-            if (data.length) {
-                data.forEach(function (pet) {
+            if (dataset.data) {
+                dataset.data.forEach(function (pet) {
                     console.log(pet);
 
                     let row = document.createElement('tr');
